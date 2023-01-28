@@ -56,16 +56,33 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ELASTIC_APM = {
-  # Set required service name. Allowed characters:
-  # a-z, A-Z, 0-9, -, _, and space
-  'SERVICE_NAME': 'codeprogress',
 
-  # Set custom APM Server URL (default: http://localhost:8200)
-  'SERVER_URL': 'http://apm:8200',
-  'DEBUG': True,
-  'ENVIRONMENT': 'production',
+# Add the agent to the installed apps
+INSTALLED_APPS = (
+  'elasticapm.contrib.django',
+  # ...
+)
+
+ELASTIC_APM = {
+  # Set the required service name. Allowed characters:
+  # a-z, A-Z, 0-9, -, _, and space
+  #'SERVICE_NAME': 'my-service-name',
+
+  # Use if APM Server requires a secret token
+  'SECRET_TOKEN': 'GytrIie5q2ixbhhHn1',
+
+  # Set the custom APM Server URL (default: http://localhost:8200)
+  'SERVER_URL': 'https://159b20bd8d8d4fe18491d654d5a9c488.apm.us-central1.gcp.cloud.es.io:443',
+
+  # Set the service environment
+  'ENVIRONMENT': 'my-environment',
 }
+
+# To send performance metrics, add our tracing middleware:
+MIDDLEWARE = (
+  'elasticapm.contrib.django.middleware.TracingMiddleware',
+  #...
+)
 
 ROOT_URLCONF = 'codeprogress.urls'
 
