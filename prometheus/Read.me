@@ -1,0 +1,61 @@
+Prometheus é uma ferramenta open-source, um toolkit de ferramentas. que atraves de uma serie de ferramentas, bibliotecas, exporters e muito mais.
+foi criado pela soundcloud.
+Roda de maneira independente
+roda em qualquer cloud(cloudnative)
+
+- dados dimensionais;
+- consultas poderosas;
+- Fácil visualizacão dos dados em conjunto com gafana
+- Storage eficiente; 
+- simples;
+-Alerta inteligente (encadeamento de alertas);
+- Diversidade de clients e integracões;
+
+
+- pull via http
+ Prometheus -------> APP/metrics (15s)
+
+-você adapta sua aplicacão ao formato do Prometheus.
+- possui sdks para diversas aplicacoes.
+
+
+Informacões relevantes para o negócio
+
+- quantidade de compras
+- tempo de resposta no processo de compras
+- quantidade de usuarios logados
+- utilizacao de feature x
+- busca espefífica no site
+
+E quando não foi vc que desenvolveu?
+como pegar metricas? 
+-MYSQL
+-NGINX / APACHE
+- etc....
+Exporters estão ai pra isso.
+fornece um servidor web com o /metrics
+
+Metricas: counter
+-valor incremental
+- Prometheus consegue absorver falhas no caso esse numero tenha um eventual reset
+-Exemplos:
+    - quantidade visitas em um site
+    - quantidade de vendas
+
+Metricas: Gauge
+- valor pode possuir variacoes com o tempo
+- aumentar/diminuir/estabilizar
+Exemplo: 
+    - quantidade de usuarios online
+
+Métricas: Histogram
+
+- Distribuir dados de frequencia
+- mediacao é baseado em amostras
+- consegue agregar valores
+
+Metricas: summary
+- Muito similar ao Histogram
+- Com summary os valores são calculados no servidor de aplicacao nao no Prometheus
+- Bom para aproximacao de valores
+- de forma geral, é muito mais comum utilizar histogram
